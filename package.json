@@ -15,6 +15,7 @@
   "author": "yash",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "express": "^4.17.3",
     "morgan": "^1.10.0"
   },
