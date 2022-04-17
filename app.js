@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/order');
-mongoose.connect('mongodb+srv://rest-api:' + process.env.MONGO_ATLAS_PW + '@cluster0.fqk5z.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
-    useMongoClient : true
-});
+mongoose.connect('mongodb+srv://rest-api:rest-api@cluster0.sw2tl.mongodb.net/rest-api?retryWrites=true&w=majority').then(() => {
+    console.log('connection successful');
+}).catch((err) => console.log('failed connection'));
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended : false}));
