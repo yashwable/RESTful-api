@@ -11,6 +11,9 @@ mongoose.connect('mongodb+srv://rest-api:rest-api@cluster0.sw2tl.mongodb.net/res
     console.log('connection successful');
 }).catch((err) => console.log('failed connection'));
 
+mongoose.Promise = global.Promise;
+
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
