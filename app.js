@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 
 const productRoutes = require('./api/routes/products');
-const orderRoutes = require('./api/routes/order');
+const orderRoutes = require('./api/routes/orders');
 mongoose.connect('mongodb+srv://rest-api:rest-api@cluster0.sw2tl.mongodb.net/rest-api?retryWrites=true&w=majority').then(() => {
     console.log('connection successful');
 }).catch((err) => console.log('failed connection'));
@@ -30,7 +30,7 @@ app.use((req,res,next) => {
 
 //adding changes
 app.use('/products' , productRoutes) ;
-app.use('/order' , orderRoutes) ;
+app.use('/orders' , orderRoutes) ;
 
 app.use ((req,res,next)=> {
     const error = new Error('not found');
