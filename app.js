@@ -7,14 +7,17 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
-mongoose.connect('mongodb+srv://rest-api:rest-api@cluster0.sw2tl.mongodb.net/rest-api?retryWrites=true&w=majority').then(() => {
+mongoose.connect('mongodb+srv://rest-api:restful-api@cluster0.ocehh.mongodb.net/rest-api?retryWrites=true&w=majority')
+.then(() => {
     console.log('connection successful');
-}).catch((err) => console.log('failed connection'));
+})
+.catch((err) => console.log('failed connection'));
 
 mongoose.Promise = global.Promise;
 
 
 app.use(morgan('dev'));
+app.use(express.static('uploads'));
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
