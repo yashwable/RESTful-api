@@ -4,6 +4,7 @@ const mongoose = require ('mongoose');
 const bcrypt = require ('bcrypt');
 
 const User = require ("../models/user");
+const user = require("../models/user");
 
 router.post("/signup",(req,res,next) => {
     User.find ({email:req.params.email})
@@ -43,6 +44,38 @@ router.post("/signup",(req,res,next) => {
         }
     });
     
+});
+
+router.post("/login",(req,res,next) => {
+    User.find({email: req.body.email})
+    .exec()
+    .then(user => {
+        if (user.length < 0){
+            return res.status(401).json({
+                message : 'Auth fails'
+            });
+        }
+        bcrypt.compare(req.body.password,user[0].password,(err,result) => {
+            if (err){
+                return res.status(401).json({
+                    message : 'Auth fails'
+                });
+            }
+            if (result){
+                return res.status(200).json({
+                    message:'Auth successful'
+                });
+            }
+            res.status(401).json({
+                message : 'Auth fails'
+            });
+        });
+    })
+    .catch(err => {
+        res.status(500).json({
+            error : err 
+        });
+    });
 });
 
 router.delete("/:userId" , (req,res,next) => {
