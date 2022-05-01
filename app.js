@@ -9,7 +9,7 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require ('./api/routes/user');
 
-mongoose.connect('mongodb+srv://rest-api:restful-api@cluster0.ocehh.mongodb.net/rest-api?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://rest-api:'+ process.env.MONGO_ATLAS_PW +'@cluster0.ocehh.mongodb.net/rest-api?retryWrites=true&w=majority')
 .then(() => {
     console.log('connection successful');
 })
